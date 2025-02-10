@@ -16,21 +16,31 @@ export const ScrollTriggerTemplate = () => {
 
 const AnimationFirst = () => {
   useGSAP(() => {
+    ScrollTrigger.normalizeScroll(true);
+    const wrapper = document.querySelector(".wrapper");
+    if (!wrapper) return;
     gsap
       .timeline({
         scrollTrigger: {
-          trigger: ".wrapper",
+          trigger: wrapper,
           pin: true,
           pinSpacing: true,
           scrub: 1,
-          start: "top top",
-          end: "+=700px",
-          markers: true,
+          start: "center center",
+          end: () => "+=" + wrapper.clientHeight,
+          anticipatePin: 1,
         },
       })
-      .to(".animate-group", {
-        x: "-160%",
-      });
+      .fromTo(
+        ".animate-group",
+        {
+          xPercent: 0,
+          x: 0,
+        },
+        {
+          xPercent: -200,
+        }
+      );
   });
 
   return (
@@ -38,23 +48,25 @@ const AnimationFirst = () => {
       <div className="w-full overflow-hidden">
         <div className="overflow-visible">
           <div className="flex items-center animate-group">
-            <div className="w-screen flex-shrink-0 h-[100vh] flex flex-col justify-center py-8 px-4 text-center lg:py-16 lg:px-12">
-              <div>
-                <div className="text-4xl font-semibold text-neutral-800 bg-purple-200 w-fit rounded-md p-3">
-                  Animate Anything
+            <div className="w-screen flex-shrink-0 h-[80vh] flex flex-col justify-center py-8 px-4 text-center  lg:px-12">
+              <div className="py-8 px-4 mx-auto max-w-screen-xl flex flex-col items-start w-full justify-center">
+                <div>
+                  <div className="text-4xl font-semibold text-neutral-800 bg-purple-200 w-fit rounded-md p-3">
+                    Animate Anything
+                  </div>
+                  <div className="text-4xl translate-x-8 font-semibold text-neutral-800 bg-orange-400 w-fit rounded-md p-3">
+                    That's right, Anything
+                  </div>
                 </div>
-                <div className="text-4xl translate-x-8 font-semibold text-neutral-800 bg-orange-400 w-fit rounded-md p-3">
-                  That's right, Anything
+                <div className="py-20">
+                  <p className="text-4xl font-medium text-neutral-800  max-w-1/2 text-left">
+                    Whether you're animating UI, SVG or creating immersive WebGL
+                    experiences, GSAP has your back.
+                  </p>
                 </div>
-              </div>
-              <div className="py-20">
-                <p className="text-4xl font-medium text-neutral-800  max-w-1/2 text-left">
-                  Whether you're animating UI, SVG or creating immersive WebGL
-                  experiences, GSAP has your back.
-                </p>
               </div>
             </div>
-            <div className="w-screen flex-shrink-0 h-[100vh] flex items-center py-8 px-4 text-center lg:py-16 lg:px-12">
+            <div className="w-screen flex-shrink-0 h-[100vh] flex items-center py-8 px-4 text-center  lg:px-12">
               <p className="text-[120px] whitespace-nowrap font-medium   max-w-1/2 text-left">
                 Nice and easy easing add personaliy to your animations.
               </p>

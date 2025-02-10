@@ -1,10 +1,12 @@
 import "./App.css";
-import { ScrollTriggerTemplate } from "./templates/scrolltrigger.template";
+import { ScrollTriggerImageComparisionTemplate } from "./templates/scroll-trigger/image-comparation";
+// import { ScrollTriggerTemplate } from "./templates/scrolltrigger.template";
 
 function App() {
   return (
     <div className="h-screen w-screen flex flex-col">
-      <ScrollTriggerTemplate />
+      {/* <ScrollTriggerTemplate /> */}
+      <ScrollTriggerImageComparisionTemplate />
     </div>
   );
 }
